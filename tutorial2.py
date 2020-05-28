@@ -1,10 +1,5 @@
 # these should already be available
-!pip install torch==1.4.0
-!pip install torchvision==0.5
-!pip install numpy
-!pip install tqdm
-!pip install pytorch-nemo>=0.0.7
-!pip install pillow
+
 import argparse
 import torch
 import torch.nn as nn
@@ -109,9 +104,6 @@ test_loader = torch.utils.data.DataLoader(
 )
 
 def get_model():
-    !rm -rf mnist_cnn_fp.pt
-    !wget https://raw.githubusercontent.com/FrancescoConti/nemo_examples_helper/master/mnist_cnn_fp.pt
-    !md5sum mnist_cnn_fp.pt
     model = ExampleNet().to(device)
     state_dict = torch.load("mnist_cnn_fp.pt", map_location='cpu')
     model.load_state_dict(state_dict, strict=True)
